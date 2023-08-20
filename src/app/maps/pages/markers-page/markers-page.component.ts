@@ -28,4 +28,19 @@ export class MarkersPageComponent implements AfterViewInit{
     // .setLngLat(this.currentLngLat)
     // .addTo(this.map)
   }
+  createMarker(){
+    if(!this.map)return ;
+    const color = '#xxxxxx'.replace(/x/g, y=>(Math.random()*16|0).toString(16));
+    const lngLat=this.map.getCenter();
+    this.aaddMarker(lngLat,color);
+  }
+  aaddMarker(lngLat:LngLat,color:string){
+    if(!this.map)return;
+
+    const marker=new Marker({
+      color:color,
+      draggable: true
+    }).setLngLat(lngLat)
+    .addTo(this.map)
+  }
 }
